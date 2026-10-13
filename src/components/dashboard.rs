@@ -3,14 +3,15 @@ use gpui_component::{h_flex, v_flex, ActiveTheme};
 
 use crate::components::sidebar::sidebar;
 
-pub struct Dashboard;
+pub struct Dashboard {
+    pub sidebar_collapsed: bool,
+}
 
 impl Dashboard {
     pub fn new() -> Self {
-        Self
+        Self { sidebar_collapsed: false }
     }
 }
-
 const TASKS: [(&str, &str); 6] = [
     ("08:00", "Sabah rutini"),
     ("09:00", "Rust çalış"),
@@ -82,7 +83,7 @@ impl Render for Dashboard {
             .size_full()
             .bg(cx.theme().background)
             .text_color(cx.theme().foreground)
-            .child(sidebar(cx))
+            .child(sidebar(self.sidebar_collapsed, cx))
             .child(
                 v_flex()
                     .flex_1()
