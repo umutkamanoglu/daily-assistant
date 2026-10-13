@@ -5,7 +5,9 @@ use gpui::*;
 use gpui_component::Root;
 
 fn main() {
-    Application::new().run(|cx: &mut App| {
+    Application::new()
+        .with_assets(gpui_component_assets::Assets)
+        .run(|cx: &mut App| {
         gpui_component::init(cx);
 
         let bounds = Bounds::centered(None, size(px(1100.), px(750.)), cx);
